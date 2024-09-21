@@ -2,7 +2,7 @@
 let employeesDetails = [
     { name: 'Fahmid', shifts: [{ day: 'Monday', hours: 6 }] },
     { name: 'Sadman', shifts: [{ day: 'Tuesday', hours: 7 }] },
-    { name: 'Raiyan', shifts: [{ day: 'Wednesday', hours: 8 }] },
+    { name: 'Raiyan', shifts: [{ day: 'Wednesday', hours: 8 },] },
     { name: 'Nayeem', shifts: [{ day: 'Thursday', hours: 9 }] }
 ];
 // Task 2 Create a Function to Display Employee Shift Details:
@@ -47,9 +47,33 @@ function assignShift(employeeName, day, hours) {
     console.log(`Shift on ${day} for ${hours} hours is assigned to ${employeeName}`);
 }
 // Testing by Assigning  shift to new employee Shrabasty 
-assignShift("Shrabasty", "Thursday", 8);
-// Testing by Assigning  shift to exsisting employee Fahmid
-assignShift("Fahmid", "Monday", 8);
-// Testing by Assigning  shift to exsisting employee Sadman
-assignShift("Sadman", "Wednesday", 8);
+assignShift("Shrabasty", "Thursday", 8);// Error: Employee Name: Shrabasty not found
 
+// Testing by Assigning  shift to exsisting employee Fahmid
+assignShift("Fahmid", "Monday", 8);// Error: Fahmid already has a shift on Monday
+
+// Testing by Assigning  shift to exsisting employee Sadman
+assignShift("Sadman", "Thursday", 8);// Shift on Thursday for 8 hours is assigned to Sadman
+
+// Task 4 Create a Function to Calculate Total Hours Worked
+function calculateTotalHours(employeeName) {
+    let employee = employeesDetails.find(employee => employee.name === employeeName);
+
+     // Calculate the total hours by summing up the hours from all shifts
+     let totalHours = employee.shifts.reduce((total, shift) => total + shift.hours, 0);
+     // If employee not found log an Error message 
+    if (!employee) {
+        console.log(`Error: Employee Name: ${employeeName} not found`);
+        return;
+    }
+    
+     console.log(`Total hours worked by ${employeeName}: ${totalHours} hours`);
+     return totalHours;
+ }
+ calculateTotalHours("Fahmid");  // Total hours worked by Fahmid: 6 hours
+calculateTotalHours("Sadman");  // Total hours worked by Sadman: 15 hours
+calculateTotalHours("Raiyan");  // Total hours worked by Raiyan: 8 hours
+calculateTotalHours("Nayeem");  // Total hours worked by Nayeem: 9 hours
+calculateTotalHours("Shrabasty")
+
+// 
