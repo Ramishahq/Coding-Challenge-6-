@@ -74,6 +74,33 @@ function calculateTotalHours(employeeName) {
 calculateTotalHours("Sadman");  // Total hours worked by Sadman: 15 hours
 calculateTotalHours("Raiyan");  // Total hours worked by Raiyan: 8 hours
 calculateTotalHours("Nayeem");  // Total hours worked by Nayeem: 9 hours
-calculateTotalHours("Shrabasty")
 
-// 
+
+// Task 5: Create a Function to List Employees with Free Days
+
+
+function listAvailableEmployees(day) {
+    // Find employees who don't have a shift on the given day
+
+    let availableEmployees = employeesDetails.filter(employee => 
+
+        //Tests if at least one element passes a given test. 
+
+        !employee.shifts.some(shift => shift.day === day)
+    );
+
+    // Check if there are no available employees
+    if (availableEmployees.length === 0) {
+        console.log(`No employees are available on ${day}.`);
+    } else {
+        console.log(`Employees available on ${day}:`);
+        availableEmployees.forEach(employee =>  console.log(employee.name));
+            
+    }
+}
+
+// Testing the function
+listAvailableEmployees("Monday");  
+// Output Employees available on Monday: Sadman, Raiyan, Nayeem
+listAvailableEmployees("Thursday");  
+// Output Employees available on Thursday: Fahmid, Raiyan
